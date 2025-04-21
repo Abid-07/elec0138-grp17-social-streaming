@@ -172,3 +172,30 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# PHP / Web project additions
+
+# Uploaded files
+uploads/*
+!uploads/.keep   # Keep empty structure if needed
+
+# Sensitive config (if applicable)
+*.env
+*.log
+db.php.bak
+
+# IDE folders (if missed)
+.vscode/
+
+# AI debug logs
+ai_debug.log
+
+# ZIPs/backups (if you ever create/download)
+*.zip
+
+# Model files (if large)
+*.pkl
+*.joblib
+
+# Enforce LF line endings for all text files
+* text eol=lf
