@@ -1,1 +1,1 @@
-# AMLS_II_assignment24_25
+# ELEC0138 Group 17 Project - Digital Social Streaming Platforms
