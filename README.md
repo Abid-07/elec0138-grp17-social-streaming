@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ELEC0138 GRP 17 – Digital Social Streaming Platform
 
 This is a secure web-based social streaming platform built for the ELEC0138 Security & Privacy coursework. It allows users to stream videos, purchase credits securely, and includes an AI-powered phishing detection system to flag suspicious messages.
@@ -366,3 +367,6 @@ This model is intended for academic and demonstration purposes and should be eva
 Group 17 – ELEC0138  
 UCL Security & Privacy Coursework 2024/2025
 
+=======
+# ELEC0138 Group 17 Project - Digital Social Streaming Platforms
+>>>>>>> 2552f71c158566d3302fb7a112cc714fb460caae
