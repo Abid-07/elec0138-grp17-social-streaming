@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # ELEC0138 GRP 17 – Digital Social Streaming Platform
 
 This is a secure web-based social streaming platform built for the ELEC0138 Security & Privacy coursework. It allows users to stream videos, purchase credits securely, and includes an AI-powered phishing detection system to flag suspicious messages.
@@ -34,7 +33,7 @@ cd /opt/lampp/lampp/htdocs/social_streaming
 
 ### 3. Setup the MySQL Database
 
-#### 📄 Option A: Using phpMyAdmin (Recommended for Local XAMPP/Ubuntu VM Setup)
+#### 📄 Using phpMyAdmin (Recommended for Local XAMPP/Ubuntu VM Setup)
 
 1. Start your Apache and MySQL services via XAMPP control panel or by running:
 
@@ -60,13 +59,11 @@ cd /opt/lampp/lampp/htdocs/social_streaming
 
 5. After the database is created, click on **Import** tab in the top menu.
 
-6. Click **Choose File** and select the provided SQL file (e.g., `social_streaming.sql`).
+6. Click **Choose File** and select the provided SQL file (e.g., `social_streaming_db.sql`).
 
 7. Scroll down and click **Go** to run the import.
 
 8. Once complete, you should see all required tables (`users`, `videos`, `messages`, etc.) inside the `social_streaming` database.
-
-> ✅ You are now ready to run the platform locally with your full database schema in place!
 
 > 📝 If no `.sql` file is available, ensure you manually create required tables as per your PHP code (e.g., `users`, `videos`, `messages`, `purchases`, `comments`, `used_tokens`).
 
@@ -102,8 +99,6 @@ Ensure this file exists in your project:
 ```
 url_pipeline.pkl
 ```
-
-> If missing, retrain or transfer it from the original VM.
 
 ---
 
@@ -176,6 +171,7 @@ social_streaming/
 ### 🔪 Demonstrating Security Features & Simulations
 
 This platform includes a prototype donation system integrated with secure credit transfer between users. The following steps can be used to test its behavior and observe protections:
+Note: Aside from loopback mode on Wireshark, Kali Linux will not detect localhost on a different VM, therefore a Digital Ocean Server (209.38.160.133) is provided temporarily, to use on the 'victim' device.
 
 #### 💰 Testing Donation & Observing Encrypted Data
 
