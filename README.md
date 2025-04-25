@@ -171,7 +171,8 @@ social_streaming/
 ### Demonstrating Security Features & Simulations
 
 This platform includes a prototype donation system integrated with secure credit transfer between users. The following steps can be used to test its behavior and observe protections:
-Note: Aside from loopback mode on Wireshark, Kali Linux will not detect localhost on a different VM, therefore a Digital Ocean Server (209.38.160.133) is provided temporarily, to use on the 'victim' device.
+
+(Note: Aside from loopback mode on Wireshark, Kali Linux will not detect localhost on a different VM, therefore a Digital Ocean Server (209.38.160.133) is provided temporarily, to use on the 'victim' device.)
 
 #### Testing Donation & Observing Encrypted Data
 
@@ -193,19 +194,20 @@ Note: Aside from loopback mode on Wireshark, Kali Linux will not detect localhos
 #### Buying Credits with ZTA
 
 1. **Navigate to a Buy Credits Page:**
-   - After logging in, go to a paid video’s comment page via:  
+   - After logging in, you can top up 'credits' via:  
      ```
-     (http://209.97.187.133/social_streaming/buy_credits.php)
+     http://209.97.187.133/social_streaming/buy_credits.php
      ```
 
 2. **Check link for JWT Token:**
-   - Use the **Generate New JWT** button to donate to discover.
+   - Use the **Generate New JWT** button to generate a temporary token.
   
 
 4. **Check link for MFA:**
-   - Use the **Setup MFA** button and setup using Google Authenticator.
+   - Use the **Setup MFA** button, scan/ enter code to setup using Google Authenticator.
+   - Enter time limited code on Authenticator app.
   
-You can purchase credits, but if you refresh the JWT Token, the transaction will no longer work for the same donation.
+You can purchase 'credits', but the same JWT Token cannot be used for multiple donations, as part of the preventative measures for replay/ session attacks.
 
 #### Simulated Attacks (Optional)
 
@@ -380,7 +382,3 @@ This model is intended for academic and demonstration purposes and should be eva
 
 Group 17 – ELEC0138  
 UCL Security & Privacy Coursework 2024/2025
-
-=======
-# ELEC0138 Group 17 Project - Digital Social Streaming Platforms
->>>>>>> 2552f71c158566d3302fb7a112cc714fb460caae
