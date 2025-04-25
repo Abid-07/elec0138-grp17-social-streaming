@@ -207,7 +207,7 @@ This platform includes a prototype donation system integrated with secure credit
    - Use the **Setup MFA** button, scan/ enter code to setup using Google Authenticator.
    - Enter time limited code on Authenticator app.
   
-You can purchase 'credits', but the same JWT Token cannot be used for multiple donations, as part of the preventative measures for replay/ session attacks.
+You can purchase 'credits', but the same JWT Token cannot be used for multiple purchases, as part of the preventative measures for replay/ session attacks.
 
 #### Simulated Attacks (Optional)
 
