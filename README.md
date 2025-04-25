@@ -199,10 +199,9 @@ You can further test the security of the donation process using Kali Linux tools
 - Attempt to alter or replay a donation request.
 - The system’s transaction integrity checks should prevent improper manipulation.
 
-##### ⚡ Option 2: Bettercap Replay Attacks
+##### ⚡ Option 2: Bettercap Spoofing
 - Run `bettercap` on Kali Linux to observe session-level manipulation.
-- Use HTTP module to inject or monitor payloads.
-- Test whether a captured donation can be **replayed** or **reused**.
+- Use HTTP module to monitor payloads.
 
 > 💡 _These simulations demonstrate an understanding of how real-world attacks might target credit transfer systems, and how defensive strategies (like transaction validation and encryption) can mitigate such risks._
 
