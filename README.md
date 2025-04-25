@@ -344,7 +344,7 @@ pip install -r requirements.txt
 - `phishing_site_urls.csv` – Dataset containing labeled URLs with "good" or "bad" classification.
   - **Source**: [Phishing Website Detector Dataset - Kaggle](https://www.kaggle.com/datasets/taruntiwarihp/phishing-site-urls)
 
-### ▶How to Run
+### How to Run
 
 1. **Activate your environment (if applicable):**
 
