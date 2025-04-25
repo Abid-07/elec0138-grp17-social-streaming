@@ -1,10 +1,10 @@
 # ELEC0138 GRP 17 – Digital Social Streaming Platform
 
-This is a secure web-based social streaming platform built for the ELEC0138 Security & Privacy coursework. It allows users to stream videos, purchase credits securely, and includes an AI-powered phishing detection system to flag suspicious messages.
+This is a secure web-based social streaming platform built for ELEC0138. It allows users to stream videos, purchase credits securely, and includes an AI-powered phishing detection system to flag suspicious messages.
 
 ---
 
-## ⚙️ Requirements
+## Requirements
 
 - Ubuntu 22.04+ (VM or local machine)
 - Apache2
@@ -15,7 +15,7 @@ This is a secure web-based social streaming platform built for the ELEC0138 Secu
 
 ---
 
-## 📦 Setup Instructions
+## Setup Instructions
 
 ### 1. Clone the repository
 
@@ -33,7 +33,7 @@ cd /opt/lampp/lampp/htdocs/social_streaming
 
 ### 3. Setup the MySQL Database
 
-#### 📄 Using phpMyAdmin (Recommended for Local XAMPP/Ubuntu VM Setup)
+#### Using phpMyAdmin (Recommended for Local XAMPP/Ubuntu VM Setup)
 
 1. Start your Apache and MySQL services via XAMPP control panel or by running:
 
@@ -65,7 +65,7 @@ cd /opt/lampp/lampp/htdocs/social_streaming
 
 8. Once complete, you should see all required tables (`users`, `videos`, `messages`, etc.) inside the `social_streaming` database.
 
-> 📝 If no `.sql` file is available, ensure you manually create required tables as per your PHP code (e.g., `users`, `videos`, `messages`, `purchases`, `comments`, `used_tokens`).
+>  If no `.sql` file is available, ensure you manually create required tables as per your PHP code (e.g., `users`, `videos`, `messages`, `purchases`, `comments`, `used_tokens`).
 
 ### 4. Configure Database Connection
 
@@ -82,7 +82,7 @@ if ($conn->connect_error) {
 
 ---
 
-## 🐍 Python AI Detection Setup
+## Python AI Detection Setup
 
 ### 5. Install Required Python Dependencies
 
@@ -102,7 +102,7 @@ url_pipeline.pkl
 
 ---
 
-## 🔐 AI-Based Phishing Detection
+## AI-Based Phishing Detection
 
 The AI detection script is located at:
 
@@ -120,7 +120,7 @@ If a URL is flagged as phishing, it gets stored in the database (`ai_flag` colum
 
 ---
 
-## 🖼 Uploads & File Permissions
+## Uploads & File Permissions
 
 Ensure upload directories exist and are writable:
 
@@ -131,7 +131,7 @@ chmod -R 777 uploads
 
 ---
 
-## 🚀 Running the Site
+## Running the Site
 
 Start XAMPP (Apache + MySQL):
 
@@ -139,20 +139,20 @@ Start XAMPP (Apache + MySQL):
 sudo /opt/lampp/lampp start
 ```
 
-> 📝 Make sure both Apache and MySQL are running. You can verify by visiting:
+> Make sure both Apache and MySQL are running. You can verify by visiting:
 >
 > http://localhost/phpmyadmin — for database access  
 > http://localhost/social_streaming/ — for the main site
 
 ---
 
-## 🦚 Demo Accounts
+## Demo Accounts
 
 You may pre-register accounts via the `registration.php` page or manually insert users into the `users` table.
 
 ---
 
-## 📁 Directory Structure
+## Directory Structure
 
 ```
 social_streaming/
@@ -168,12 +168,12 @@ social_streaming/
 ---
 
 
-### 🔪 Demonstrating Security Features & Simulations
+### Demonstrating Security Features & Simulations
 
 This platform includes a prototype donation system integrated with secure credit transfer between users. The following steps can be used to test its behavior and observe protections:
 Note: Aside from loopback mode on Wireshark, Kali Linux will not detect localhost on a different VM, therefore a Digital Ocean Server (209.38.160.133) is provided temporarily, to use on the 'victim' device.
 
-#### 💰 Testing Donation & Observing Encrypted Data
+#### Testing Donation & Observing Encrypted Data
 
 1. **Navigate to a Paid Video Page:**
    - After logging in, go to a paid video’s comment page via:  
@@ -189,24 +189,41 @@ Note: Aside from loopback mode on Wireshark, Kali Linux will not detect localhos
    - Filter by `http` or `tcp.port == 80` to observe **unencrypted HTTP packets**.
    - Look for the `POST` request to `video_comments.php` and examine the form data submitted during the donation.
    - You will observe **obfuscated or encrypted** fields related to the transaction (homomorphic simulation).
+  
+#### Buying Credits with ZTA
 
-#### 🔪 Simulated Attacks (Optional)
+1. **Navigate to a Buy Credits Page:**
+   - After logging in, go to a paid video’s comment page via:  
+     ```
+     (http://209.97.187.133/social_streaming/buy_credits.php)
+     ```
+
+2. **Check link for JWT Token:**
+   - Use the **Generate New JWT** button to donate to discover.
+  
+
+4. **Check link for MFA:**
+   - Use the **Setup MFA** button and setup using Google Authenticator.
+  
+You can purchase credits, but if you refresh the JWT Token, the transaction will no longer work for the same donation.
+
+#### Simulated Attacks (Optional)
 
 You can further test the security of the donation process using Kali Linux tools:
 
-##### 🔍 Option 1: MITM Proxying
+##### Option 1: MITM Proxying
 - Use **`mitmproxy`** to intercept traffic on the HTTP endpoint.
 - Attempt to alter or replay a donation request.
 - The system’s transaction integrity checks should prevent improper manipulation.
 
-##### ⚡ Option 2: Bettercap Spoofing
+##### Option 2: Bettercap Spoofing
 - Run `bettercap` on Kali Linux to observe session-level manipulation.
 - Use HTTP module to monitor payloads.
 
-> 💡 _These simulations demonstrate an understanding of how real-world attacks might target credit transfer systems, and how defensive strategies (like transaction validation and encryption) can mitigate such risks._
+>  _These simulations demonstrate an understanding of how real-world attacks might target credit transfer systems, and how defensive strategies (like transaction validation and encryption) can mitigate such risks._
 
 
-## 🧪 Full Working Setup Recap: HTTP POST Interception and Replay (Bettercap + mitmproxy)
+## Full Working Setup Recap: HTTP POST Interception and Replay (Bettercap + mitmproxy)
 
 This guide demonstrates how to simulate interception and replay attacks using `mitmproxy` and `Bettercap`. **Note**: Network interface names (e.g., `eth0`) and local IPs will differ based on your machine setup. Use `ip addr` to confirm your actual interface and IP.
 
@@ -258,15 +275,15 @@ arp.spoof on
 
 ---
 
-✅ You're now ready to intercept and modify HTTP POST requests for testing.
+You're now ready to intercept and modify HTTP POST requests for testing.
 
 
 
-## 🚨 Phishing Email Attack Simulation
+## Phishing Email Attack Simulation
 
 This module demonstrates how an AI-driven phishing attack could be simulated using GPT-2 and user data from a social streaming platform prototype. It generates personalized phishing messages and sends them via the platform's internal messaging system.
 
-### 📁 Requirements
+### Requirements
 
 Make sure you've installed all dependencies:
 
@@ -274,14 +291,14 @@ Make sure you've installed all dependencies:
 pip install -r requirements.txt
 ```
 
-### 📦 Required Files
+### Required Files
 
 - `ai_phishing.py` – The main phishing email generator and sender script.
 - `most_subscribed_youtube_channels.csv` – Dataset used to personalize phishing emails with top content creators.
 - Ensure the platform API (e.g., `export_users.php`, `send_message.php`, `login_process.php`) is running and accessible.
-    - 📚 **Source**: [YouTube Creator Dataset - Kaggle](https://www.kaggle.com/datasets/surajjha101/top-youtube-channels-data/data)
+    -  **Source**: [YouTube Creator Dataset - Kaggle](https://www.kaggle.com/datasets/surajjha101/top-youtube-channels-data/data)
 
-### ▶️ How to Run
+###  How to Run
 
 1. **Activate your environment (if applicable):**
 
@@ -303,17 +320,17 @@ python ai_phishing.py
    - Use GPT-2 to generate a personalized phishing message.
    - Log in as `admin` and send the message via the platform’s internal inbox system.
 
-### 🔐 Note
+### Note
 
 This attack is simulated in a controlled environment for educational purposes only. Do **not** deploy or run this outside a sandbox or ethical testing context.
 
 
 
-## 🧠 Phishing URL Detection Model
+## Phishing URL Detection Model
 
 This module demonstrates how to train a machine learning model to classify URLs as phishing or legitimate using both text-based and structural features. It leverages `XGBoost`, `scikit-learn`, and `TF-IDF` to detect potentially malicious URLs.
 
-### 📁 Requirements
+### Requirements
 
 Make sure you've installed all dependencies:
 
@@ -321,13 +338,13 @@ Make sure you've installed all dependencies:
 pip install -r requirements.txt
 ```
 
-### 📦 Required Files
+### Required Files
 
 - `url_phishing_detector.py` – Main script to preprocess URLs and train the classifier.
 - `phishing_site_urls.csv` – Dataset containing labeled URLs with "good" or "bad" classification.
-  - 📚 **Source**: [Phishing Website Detector Dataset - Kaggle](https://www.kaggle.com/datasets/taruntiwarihp/phishing-site-urls)
+  - **Source**: [Phishing Website Detector Dataset - Kaggle](https://www.kaggle.com/datasets/taruntiwarihp/phishing-site-urls)
 
-### ▶️ How to Run
+### ▶How to Run
 
 1. **Activate your environment (if applicable):**
 
@@ -350,7 +367,7 @@ python url_phishing_detector.py
    - Print classification metrics on the test set.
    - Save the trained model as `url_phishing_detector.pkl`.
 
-### 🧪 Note
+### Note
 
 Ensure your CSV contains a `Label` column with values "good" and "bad", and a `URL` column. The script also generates numerical features like URL length, dot count, and more.
 
@@ -359,7 +376,7 @@ Ensure your CSV contains a `Label` column with values "good" and "bad", and a `U
 This model is intended for academic and demonstration purposes and should be evaluated further before deployment in production environments.
 
 
-## 👨‍💻 Author
+## Author
 
 Group 17 – ELEC0138  
 UCL Security & Privacy Coursework 2024/2025
