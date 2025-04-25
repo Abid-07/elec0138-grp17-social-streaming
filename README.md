@@ -120,6 +120,84 @@ If a URL is flagged as phishing, it gets stored in the database (`ai_flag` colum
 
 ---
 
+## Snort Setup for AI-Based Phishing Detection
+
+### 1.  Check Snort is Installed
+```bash
+snort -V
+```
+If not installed:
+```bash
+sudo apt update
+sudo apt install snort
+```
+
+---
+
+### 2.  Add AI Alert Rule to `local.rules`
+Open Snort’s local rules file:
+```bash
+sudo nano /etc/snort/rules/local.rules
+```
+Add this rule at the bottom:
+```snort
+alert tcp any any -> any 12345 (msg:"⚠️ AI Detected Phishing Attempt"; content:"AI_PREDICTED_PHISHING"; sid:1000009; rev:1;)
+```
+Save and exit.
+
+---
+
+### 3. 🔧 Make Sure Snort Loads `local.rules`
+Edit `snort.conf`:
+```bash
+sudo nano /etc/snort/snort.conf
+```
+Find and verify this line is **uncommented** (no `#` in front):
+```snort
+include $RULE_PATH/local.rules
+```
+Also confirm `RULE_PATH` is set correctly:
+```snort
+var RULE_PATH /etc/snort/rules
+```
+
+---
+
+### 4. Run Snort in Listening Mode (Loopback)
+```bash
+sudo snort -A console -q -c /etc/snort/snort.conf -i lo
+```
+Explanation:
+- `-A console`: Print alerts to terminal
+- `-q`: Quiet mode (suppress stats)
+- `-c`: Path to snort.conf
+- `-i lo`: Monitor the loopback interface
+
+---
+
+### 5. Triggering Snort from Python (Already in Your Script)
+Your Python script (e.g. `hybrid_inference.py`) should include:
+```python
+import socket
+
+def trigger_snort_alert():
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.connect(("127.0.0.1", 12345))
+        s.send(b"AI_PREDICTED_PHISHING")
+        s.close()
+    except:
+        pass
+```
+When `trigger_snort_alert()` is called, Snort will capture the signature and show the alert.
+
+---
+
+### Result
+Now when your AI classifies a message as phishing and sends `"AI_PREDICTED_PHISHING"` to port `12345`, Snort will flag it with your custom message in the terminal.
+
+
+
 ## Uploads & File Permissions
 
 Ensure upload directories exist and are writable:
