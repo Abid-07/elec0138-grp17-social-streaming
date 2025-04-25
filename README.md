@@ -280,6 +280,7 @@ pip install -r requirements.txt
 - `ai_phishing.py` – The main phishing email generator and sender script.
 - `most_subscribed_youtube_channels.csv` – Dataset used to personalize phishing emails with top content creators.
 - Ensure the platform API (e.g., `export_users.php`, `send_message.php`, `login_process.php`) is running and accessible.
+    - 📚 **Source**: [YouTube Creator Dataset - Kaggle](https://www.kaggle.com/datasets/surajjha101/top-youtube-channels-data/data)
 
 ### ▶️ How to Run
 
@@ -294,7 +295,7 @@ source venv/bin/activate
 2. **Run the phishing simulation:**
 
 ```bash
-python ai_phishing_sender.py
+python ai_phishing.py
 ```
 
 3. The script will:
@@ -325,6 +326,7 @@ pip install -r requirements.txt
 
 - `url_phishing_detector.py` – Main script to preprocess URLs and train the classifier.
 - `phishing_site_urls.csv` – Dataset containing labeled URLs with "good" or "bad" classification.
+  - 📚 **Source**: [Phishing Website Detector Dataset - Kaggle](https://www.kaggle.com/datasets/taruntiwarihp/phishing-site-urls)
 
 ### ▶️ How to Run
 
